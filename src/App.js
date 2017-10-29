@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import _ from 'lodash';
 
-import Transactions from './model/Transactions';
+import TransactionsView from './views/Transactions';
 
 class App extends Component {
-  componentDidMount() {
-    const transactions = new Transactions()
-      .then(console.log)
-      .catch(console.error);
-  }
-
   render() {
     return (
       <div className="App">
@@ -19,9 +12,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <TransactionsView />
       </div>
     );
   }
