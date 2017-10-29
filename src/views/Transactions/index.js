@@ -1,13 +1,12 @@
 import React from 'react';
 import withTransactions from './withTransactions';
+import TransactionTable from '../../components/TransactionTable';
 
 const TransactionsView = (props) => {
-  console.log(props);
   return (
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
+  		<TransactionTable {...props} />
     )
 };
 
 export default withTransactions(TransactionsView);
+
