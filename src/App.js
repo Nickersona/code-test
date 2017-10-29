@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import _ from 'lodash';
+
+import Transactions from './model/Transactions';
 
 class App extends Component {
+  componentDidMount() {
+    const transactions = new Transactions()
+      .then(console.log)
+      .catch(console.error);
+  }
+
   render() {
     return (
       <div className="App">
