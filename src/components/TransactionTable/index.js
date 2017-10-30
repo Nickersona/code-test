@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import classNames from 'classnames';
+
 import './transactionTable.css';
 
 const TransactionRow = (props) => {
