@@ -13,6 +13,7 @@ const withTransactions = (WrappedComponent) => {
       this.state = {
         transactions: [],
         total: 0,
+        error: null,
       };
     }
 
@@ -25,7 +26,8 @@ const withTransactions = (WrappedComponent) => {
             transactions,
             total,
           })
-        });
+        })
+        .catch(error => this.setState({ error }));
     }
 
     render() {

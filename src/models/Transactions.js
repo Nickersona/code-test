@@ -9,13 +9,13 @@ const getPageEndpoint = pageNumber => `${ENDPOINT}${pageNumber}.json`;
 
 class Transactions {
   constructor() {
-        return new Promise((resolve, reject) => {
-            this.get()
-              .then(data => data.json())
-              .then(data => this.getAll.call(this, data))
-              .then(resolve)
-              .catch(reject)
-        })
+    return new Promise((resolve, reject) => {
+        this.get()
+          .then(data => data.json())
+          .then(data => this.getAll.call(this, data))
+          .then(resolve)
+          .catch(reject);
+    });
   }
 
   get(page = 1) {
