@@ -1,7 +1,7 @@
 .transaction-table {
   text-align: left;
   width: 100%;
-  box-shadow: 1px 2px 2px grey;
+  box-shadow: 1px 2px 2px rbg(241, 241, 241);
 
   border-collapse: collapse;
 }
@@ -16,8 +16,8 @@
 }
 
 .transaction-table_row {
-  background-color: rgba(0, 0, 0, 0.01);
-  border-top: 1px solid grey;
+  background-color: rgb(249, 249, 249);
+  border-top: 1px solid rbg(241, 241, 241);
 }
 
 .transaction-table_row--credit {
