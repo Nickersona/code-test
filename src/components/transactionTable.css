@@ -1,0 +1,25 @@
+.transaction-table {
+  text-align: left;
+  width: 100%;
+  box-shadow: 1px 2px 2px grey;
+
+  border-collapse: collapse;
+}
+
+.transaction-table td, .transaction-table th{
+  padding: 0.75rem 0;  
+}
+
+.transaction-table_header {
+  background-color: white;
+  color: #098B8C;
+}
+
+.transaction-table_row {
+  background-color: rgba(0, 0, 0, 0.01);
+  border-top: 1px solid grey;
+}
+
+.transaction-table_row--credit {
+  color: #098B8C;
+}
