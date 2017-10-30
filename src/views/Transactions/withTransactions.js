@@ -17,15 +17,15 @@ const withTransactions = (WrappedComponent) => {
     }
 
     componentDidMount() {
-        new Transactions()
-          .then(transactions => {
-            const total = _.reduce(transactions, reduceTransactionsToTotal, 0);
+      new Transactions()
+        .then(transactions => {
+          const total = _.reduce(transactions, reduceTransactionsToTotal, 0);
 
-            this.setState({ 
-              transactions,
-              total,
-            })
-          });
+          this.setState({ 
+            transactions,
+            total,
+          })
+        });
     }
 
     render() {

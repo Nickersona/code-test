@@ -28,6 +28,16 @@ const TransactionRow = (props) => {
   );
 }
 
+//Emtpty <td>'s are a quick hack to keep spacing even on the no transactions row
+const EmptyTransactionRow = (
+  <tr className="transaction-table_row">
+    <td>No transactions Found</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+);
+
 const TransactionHeader = (props) => {
   return (
     <thead className="transaction-table_header">
@@ -47,13 +57,14 @@ const TransactionTable = (props) => {
     transactions,
   } = props;
 
+  const transactionRows = (transactions.length) 
+      ? _.map(transactions, (transaction) => <TransactionRow {...transaction}/>)
+      : EmptyTransactionRow
+
   return (
     <table className="transaction-table">
       <TransactionHeader total={total}/>
-      {_.map(
-        transactions, 
-        (transaction) => <TransactionRow {...transaction}/>,
-      )}
+      {transactionRows}
     </table>
   );
 }
