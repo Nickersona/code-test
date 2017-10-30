@@ -1,7 +1,11 @@
 import _ from 'lodash';
+
+import {
+  mapTransactionKeysToLower,
+} from '../helpers';
+
 const ENDPOINT = 'http://resttest.bench.co/transactions/' 
 const getPageEndpoint = pageNumber => `${ENDPOINT}${pageNumber}.json`;
-
 
 class Transactions {
   constructor() {
@@ -12,8 +16,8 @@ class Transactions {
               .then(resolve)
               .catch(reject)
         })
-    }
-  
+  }
+
   get(page = 1) {
     return fetch(getPageEndpoint(page));
   }
@@ -29,7 +33,8 @@ class Transactions {
     const totalPages = _.ceil(totalCount/transactionsPerPage)
 
     return this.getTransactionsInPageRange(page + 1, totalPages)
-      .then(rangeData => _.concat(transactions, rangeData.transactions));
+      .then(rangeData => _.concat(transactions, rangeData.transactions))
+      .then(this.normalizeTransactions);
   }
 
   // given a start and end range, fetch all transactions for that range
@@ -58,6 +63,14 @@ class Transactions {
           resolve(returnData);
         });
     });
+  }
+
+  // Preform any data normalization here to smooth over issue with the endpoint
+  normalizeTransactions(transactions) {
+    let formattedTransactions = [];
+    
+    formattedTransactions = _.map(mapTransactionKeysToLower);
+    return formattedTransactions;
   }
 
 }
