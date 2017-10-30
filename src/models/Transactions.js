@@ -37,7 +37,7 @@ class Transactions {
       .then(this.normalizeTransactions);
   }
 
-  // given a start and end range, fetch all transactions for that range
+  // Given a start and end range, fetch all transactions for that range
   getTransactionsInPageRange(start, end) {
     return new Promise((resolve, reject) => {
       const returnData = {
@@ -58,6 +58,7 @@ class Transactions {
         start++;
       }
 
+      // When all promises have been resolved our returnData should be ready
       Promise.all(promises)
         .then(() => {
           resolve(returnData);
@@ -72,7 +73,6 @@ class Transactions {
     formattedTransactions = _.map(mapTransactionKeysToLower);
     return formattedTransactions;
   }
-
 }
 
 export default Transactions;

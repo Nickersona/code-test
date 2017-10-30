@@ -41,13 +41,13 @@ const EmptyTransactionRow = (
 const TransactionHeader = (props) => {
   return (
     <thead className="transaction-table_header">
-        <tr>
-          <th>Date</th>
-          <th>Company</th>
-          <th>Ledger</th>
-          <th>{props.total}</th>
-        </tr>
-      </thead>
+      <tr>
+        <th>Date</th>
+        <th>Company</th>
+        <th>Ledger</th>
+        <th>{props.total}</th>
+      </tr>
+    </thead>
   );
 }
 
@@ -58,13 +58,15 @@ const TransactionTable = (props) => {
   } = props;
 
   const transactionRows = (transactions.length) 
-      ? _.map(transactions, (transaction) => <TransactionRow {...transaction}/>)
-      : EmptyTransactionRow
+    ? _.map(transactions, (transaction) => <TransactionRow {...transaction}/>)
+    : EmptyTransactionRow
 
   return (
     <table className="transaction-table">
       <TransactionHeader total={total}/>
-      {transactionRows}
+      <tbody>
+        {transactionRows}  
+      </tbody>
     </table>
   );
 }

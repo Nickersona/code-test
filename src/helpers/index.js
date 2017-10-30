@@ -12,6 +12,6 @@ function reduceTransactionsToTotal(idx, transaction, acc) {
 const mapTransactionKeysToLower = (idx, transaction) => _.keyBy(transaction, _.toLower);
 
 export {
-	reduceTransactionsToTotal,
-	mapTransactionKeysToLower,
+  reduceTransactionsToTotal,
+  mapTransactionKeysToLower,
 }
