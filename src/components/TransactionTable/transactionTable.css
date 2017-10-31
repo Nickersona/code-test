@@ -8,6 +8,17 @@
 
 .transaction-table td, .transaction-table th{
   padding: 0.75rem 0;  
+  font-weight: normal;
+}
+
+
+.transaction-table td:last-of-type, .transaction-table th:last-of-type{
+  text-align: right;
+  padding-right: 1em;
+}
+
+.transaction-table td:first-of-type, .transaction-table th:first-of-type{
+  padding-left: 1em;
 }
 
 .transaction-table_header {
@@ -17,7 +28,7 @@
 
 .transaction-table_row {
   background-color: rgb(249, 249, 249);
-  border-top: 1px solid rbg(241, 241, 241);
+  border-top: 1px solid rgb(230, 230, 230);
 }
 
 .transaction-table_row--credit {
