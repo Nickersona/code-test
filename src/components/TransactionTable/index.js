@@ -59,7 +59,7 @@ const TransactionTable = (props) => {
   } = props;
 
   const transactionRows = (transactions.length) 
-    ? _.map(transactions, (transaction) => <TransactionRow {...transaction}/>)
+    ? _.map(transactions, (transaction, idx) => <TransactionRow key={idx} {...transaction}/>)
     : EmptyTransactionRow
 
   return (
