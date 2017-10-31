@@ -7,7 +7,7 @@ const TransactionsView = (props) => {
   const {
     error,
   } = props;
-
+  
   return (error)
     ? <ErrorMessage error={error}/>
     : <TransactionTable {...props} />

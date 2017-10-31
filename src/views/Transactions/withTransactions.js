@@ -21,7 +21,7 @@ const withTransactions = (WrappedComponent) => {
       new Transactions()
         .then(transactions => {
           const total = _.reduce(transactions, reduceTransactionsToTotal, 0);
-
+          
           this.setState({ 
             transactions,
             total,

@@ -69,8 +69,7 @@ class Transactions {
   // Preform any data normalization here to smooth over issue with the endpoint
   normalizeTransactions(transactions) {
     let formattedTransactions = [];
-    
-    formattedTransactions = _.map(mapTransactionKeysToLower);
+    formattedTransactions = _.map(transactions, mapTransactionKeysToLower);
     return formattedTransactions;
   }
 }

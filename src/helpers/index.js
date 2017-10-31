@@ -5,11 +5,13 @@ function normalizeStringToFloat(floatString) {
 }
 
 function reduceTransactionsToTotal(idx, transaction, acc) {
-  const { Amount } = transaction;
-  return acc += normalizeStringToFloat(Amount);
+  const { amount } = transaction;
+  return acc += normalizeStringToFloat(amount);
 }
 
-const mapTransactionKeysToLower = (idx, transaction) => _.keyBy(transaction, _.toLower);
+const mapTransactionKeysToLower = (transaction, idx) => {
+  return _.mapKeys(transaction, (val, key) => _.toLower(key));
+};
 
 export {
   reduceTransactionsToTotal,

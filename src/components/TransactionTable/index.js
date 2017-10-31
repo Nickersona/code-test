@@ -6,25 +6,25 @@ import './transactionTable.css';
 
 const TransactionRow = (props) => {
   const {
-    Amount,
-    Company,
-    Date,
-    Ledger,
+    amount,
+    company,
+    date,
+    ledger,
   } = props;
 
   const className = classNames(
     'transaction-table_row',
     {
-      'transaction-table_row--credit': (Amount > 0),
+      'transaction-table_row--credit': (amount > 0),
     }
   );
 
   return (
     <tr className={className}>
-      <td>{Date}</td>
-      <td>{Company}</td>
-      <td>{Ledger}</td>
-      <td>{Amount}</td>
+      <td>{date}</td>
+      <td>{company}</td>
+      <td>{ledger}</td>
+      <td>{amount}</td>
     </tr>
   );
 }
