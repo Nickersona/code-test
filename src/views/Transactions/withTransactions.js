@@ -4,6 +4,7 @@ import _ from 'lodash';
 import Transactions from '../../models/Transactions';
 import {
   reduceTransactionsToTotal,
+  convertMoneyIntToString
 } from '../../helpers';
 
 const withTransactions = (WrappedComponent) => {
@@ -20,8 +21,9 @@ const withTransactions = (WrappedComponent) => {
     componentDidMount() {
       new Transactions()
         .then(transactions => {
-          const total = _.reduce(transactions, reduceTransactionsToTotal, 0);
-          
+          const totalVal = _.reduce(transactions, reduceTransactionsToTotal, 0);
+          const total = convertMoneyIntToString(totalVal);
+
           this.setState({ 
             transactions,
             total,

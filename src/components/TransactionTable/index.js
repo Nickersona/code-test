@@ -24,7 +24,7 @@ const TransactionRow = (props) => {
       <td>{date}</td>
       <td>{company}</td>
       <td>{ledger}</td>
-      <td>{amount}</td>
+      <td>${amount}</td>
     </tr>
   );
 }
@@ -46,7 +46,7 @@ const TransactionHeader = (props) => {
         <th>Date</th>
         <th>Company</th>
         <th>Ledger</th>
-        <th>{props.total}</th>
+        <th>${props.total}</th>
       </tr>
     </thead>
   );
