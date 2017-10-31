@@ -4,6 +4,10 @@ import {
   mapTransactionKeysToLower,
 } from '../helpers';
 
+// If there's more than MAX_PAGE_FETCH pages of transaction records, limit fetches to prevent 
+// exploding the network. 
+// TODO add ability to fetch additional transactions (pagination) when this limit reached
+const MAX_PAGE_FETCH = 5;
 const ENDPOINT = 'http://resttest.bench.co/transactions/' 
 const getPageEndpoint = pageNumber => `${ENDPOINT}${pageNumber}.json`;
 
@@ -22,6 +26,9 @@ class Transactions {
     return fetch(getPageEndpoint(page));
   }
 
+  // Based on initial Transaction request data, calculate the number of additional fetch requests
+  // needed to fetch all and return a promise that resolves to the initial request transactions
+  // merged in with the additional request transactions
   getAll(initialData) {
     const { 
       totalCount, 
@@ -32,12 +39,16 @@ class Transactions {
     const transactionsPerPage = transactions.length;
     const totalPages = _.ceil(totalCount/transactionsPerPage)
 
-    return this.getTransactionsInPageRange(page + 1, totalPages)
+    const pagesToFetch = (totalPages > MAX_PAGE_FETCH) 
+      ? MAX_PAGE_FETCH
+      : totalPages;
+
+    return this.getTransactionsInPageRange(page + 1, pagesToFetch)
       .then(rangeData => _.concat(transactions, rangeData.transactions))
       .then(this.normalizeTransactions);
   }
 
-  // Given a start and end range, fetch all transactions for that range
+  // Given a start page and end page range, fetch all transactions for those pages
   getTransactionsInPageRange(start, end) {
     return new Promise((resolve, reject) => {
       const returnData = {
@@ -67,6 +78,8 @@ class Transactions {
   }
 
   // Preform any data normalization here to smooth over issue with the endpoint
+  // @TODO Normalize amount so they're not strings 
+  // @TODO Normalize dates to Date objects so the FE can decide how to output them
   normalizeTransactions(transactions) {
     let formattedTransactions = [];
     formattedTransactions = _.map(transactions, mapTransactionKeysToLower);
